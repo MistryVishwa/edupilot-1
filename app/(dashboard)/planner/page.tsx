@@ -695,7 +695,7 @@ Generate 5-6 schedule items that fit within 4 hours total. Make times realistic 
                   <Calendar className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <CardTitle className="text-base">March {selectedDay}, 2026</CardTitle>
+                  <CardTitle className="text-base">{currentDate.toLocaleString("default", { month: "long" })} {selectedDay}, {currentDate.getFullYear()}</CardTitle>
                   <p className="text-xs text-muted-foreground">
                     {visibleTasks.length} tasks scheduled
                     {savingPlan ? " • saving..." : ""}
@@ -863,7 +863,7 @@ Generate 5-6 schedule items that fit within 4 hours total. Make times realistic 
                   <Calendar className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <CardTitle className="text-base">March {selectedDay}, 2026</CardTitle>
+                  <CardTitle className="text-base">{currentDate.toLocaleString("default", { month: "long" })} {selectedDay}, {currentDate.getFullYear()}</CardTitle>
                   <p className="text-xs text-muted-foreground">
                     {visibleTasks.length} tasks scheduled
                     {savingPlan ? " • saving..." : ""}

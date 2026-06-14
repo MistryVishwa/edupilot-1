@@ -49,7 +49,7 @@ export function StudyPlanner() {
           </div>
           <div>
             <CardTitle className="text-lg font-semibold text-foreground">Study Planner</CardTitle>
-            <p className="text-xs text-muted-foreground">March 11, 2026</p>
+            <p className="text-xs text-muted-foreground">{new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</p>
           </div>
         </div>
         <Button size="sm" className="gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90">
