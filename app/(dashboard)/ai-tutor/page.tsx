@@ -60,6 +60,7 @@ import NextLink from "next/link"
 import { LoginGateModal } from "@/components/login-gate-modal"
 import { CreditsExhaustedModal } from "@/components/credits-exhausted-modal"
 import { MarkdownRenderer } from "@/components/markdown-renderer"
+import { BookmarkButton } from "@/components/bookmarks/BookmarkButton"
 
 interface ResourceLink {
   title: string
@@ -1143,9 +1144,14 @@ function AITutorContent() {
             >
               <div className="mx-auto max-w-4xl space-y-4 md:space-y-6">
                 <div ref={messagesTopRef} />
-                {messages.map((message) => {
+                {messages.map((message, messageIndex) => {
                   const feedback = messageFeedback[message.id]
                   const hasSources = message.role === "assistant" && (message.sources?.length || 0) > 0
+                  
+                  const precedingUserMessage = [...messages.slice(0, messageIndex)].reverse().find((m) => m.role === "user")
+                  const userQuestion = precedingUserMessage?.content || "AI Tutor Doubt"
+                  const currentSession = chatSessions.find((s) => s.id === activeSessionId)
+                  const subjectTopic = currentSession?.title || "AI Tutor"
 
                   return (
                     <div
@@ -1273,6 +1279,13 @@ function AITutorContent() {
                                     <Copy className="h-3.5 w-3.5" />
                                   )}
                                 </Button>
+
+                                <BookmarkButton
+                                  question={userQuestion}
+                                  answer={message.content}
+                                  subject={subjectTopic}
+                                  tags={["AI Tutor"]}
+                                />
 
                                 <Button
                                   variant="ghost"
