@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import {
   Bell, Search, Sparkles, Menu, X, Home, LayoutDashboard, MessageSquareText, FileText,
   Layers, HelpCircle, Calendar, BookOpen, Settings, Mic, User, CreditCard,
-  LogOut, Clock, TrendingUp, Lightbulb, LogIn, Lock, ArrowRight
+  LogOut, Clock, TrendingUp, Lightbulb, LogIn, Lock, ArrowRight, Bookmark
 } from "lucide-react"
 import { UserAvatar } from "@/components/user-avatar"
 import { Button } from "@/components/ui/button"
@@ -37,6 +37,7 @@ const mobileNavItems = [
   { icon: Calendar, label: "Planner", href: "/planner", guestOk: false },
   { icon: Clock, label: "Revision", href: "/revision", guestOk: false },
   { icon: Sparkles, label: "Topic Analyzer", href: "/topic-analyzer", guestOk: false },
+  { icon: Bookmark, label: "Bookmarks", href: "/bookmarks", guestOk: false },
   { icon: BookOpen, label: "Blogs", href: "/blogs", guestOk: true },
   { icon: Settings, label: "Settings", href: "/settings", guestOk: false },
 ]
@@ -89,6 +90,7 @@ const FEATURE_ITEMS: SearchItem[] = [
   { id: "feature-planner", title: "Planner", subtitle: "Create study plans", href: "/planner", icon: Calendar, category: "feature", guestOk: false },
   { id: "feature-revision", title: "Revision", subtitle: "AI Revision Scheduler", href: "/revision", icon: Clock, category: "feature", guestOk: false },
   { id: "feature-topic-analyzer", title: "Topic Analyzer", subtitle: "Analyze topic difficulty", href: "/topic-analyzer", icon: Sparkles, category: "feature", guestOk: false },
+  { id: "feature-bookmarks", title: "Bookmarks", subtitle: "Revisit bookmarked AI responses", href: "/bookmarks", icon: Bookmark, category: "feature", guestOk: false },
   { id: "feature-blogs", title: "Blogs", subtitle: "Read study blogs", href: "/blogs", icon: BookOpen, category: "feature", guestOk: true },
   { id: "feature-billing", title: "Billing", subtitle: "Manage your plan", href: "/billing", icon: CreditCard, category: "feature", guestOk: false },
   { id: "feature-profile", title: "Profile", subtitle: "View your profile", href: "/profile", icon: User, category: "feature", guestOk: false },

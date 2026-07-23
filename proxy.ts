@@ -17,6 +17,7 @@ const PROTECTED_ROUTES = [
   "/topic-analyzer",
   "/goals",
   "/revision",
+  "/bookmarks",
 ]
 
 export async function proxy(req: NextRequest) {

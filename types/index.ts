@@ -177,3 +177,15 @@ export interface RevisionStats {
   streakCount: number
 }
 
+// ─── Bookmarks ───────────────────────────────────────────────────────────────
+
+export interface Bookmark {
+  id: string
+  user_id: string
+  question: string
+  answer: string
+  subject: string | null
+  tags: string[]
+  created_at: string
+}
+
