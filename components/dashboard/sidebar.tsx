@@ -24,6 +24,7 @@ import {
   Trophy,
   Clock,
   Bookmark,
+  BarChart2,
 } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
@@ -33,6 +34,7 @@ import { useUser } from "@/hooks/use-user"
 const navItems = [
   { icon: Home,              label: "Home",       href: "/",           external: true,  guestOk: true  },
   { icon: LayoutDashboard,   label: "Dashboard",  href: "/dashboard",                   guestOk: true  },
+  { icon: BarChart2,         label: "Analytics",  href: "/analytics",                   guestOk: false },
   { icon: MessageSquareText, label: "AI Tutor",   href: "/ai-tutor",   highlight: true, guestOk: true  },
   { icon: FileText,          label: "Notes",      href: "/notes",                        guestOk: false },
   { icon: Layers,            label: "Flashcards", href: "/flashcards",                   guestOk: false },
