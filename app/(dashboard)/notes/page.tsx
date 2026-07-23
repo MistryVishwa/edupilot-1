@@ -36,6 +36,7 @@ import { cn } from "@/lib/utils"
 import { useUser } from "@/hooks/use-user"
 import { hasPaidAccess } from "@/lib/plans"
 import { LoginGateModal } from "@/components/login-gate-modal"
+import { ExportMenu } from "@/components/export/ExportMenu"
 
 type SourceMode = "pdf" | "video" | "spreadsheet"
 type NoteTab = { type: "summary" | "concepts" | "bullets" | "revision"; title: string; content: string }
@@ -1171,9 +1172,13 @@ export default function NotesPage() {
                       {creatingFlashcardsFor === currentSavedId ? "Creating..." : "Quiz Me with Flashcards"}
                     </Button>
                   ) : null}
-                  <Button variant="outline" size="icon" className="h-11 w-11 shrink-0" onClick={() => downloadNotes()}>
-                    <Download className="h-5 w-5" />
-                  </Button>
+                  <ExportMenu
+                    type="notes"
+                    title={generatedTitle}
+                    subject={sourceHint || "Study Notes"}
+                    content={{ tabs: generatedNotes }}
+                    label="Export Notes"
+                  />
                   {currentSavedId ? (
                     <Button asChild variant="outline" className="gap-2">
                       <NextLink href={`/quiz?sourceType=note&sourceId=${currentSavedId}`}>

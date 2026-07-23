@@ -39,6 +39,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ExportMenu } from "@/components/export/ExportMenu";
 
 interface Task {
   id: string;
@@ -599,6 +600,15 @@ Generate 5-6 schedule items that fit within 4 hours total. Make times realistic 
             </p>
           </div>
           <div className="flex gap-2">
+            {tasks.length > 0 && (
+              <ExportMenu
+                type="planner"
+                title={aiGoal.trim() ? `${aiGoal.trim()} Schedule` : "Study Planner Schedule"}
+                subject="Study Plan & Timetable"
+                content={{ tasks }}
+                label="Export Plan"
+              />
+            )}
             <Button
               variant="outline"
               className="gap-2"

@@ -61,6 +61,7 @@ import { LoginGateModal } from "@/components/login-gate-modal"
 import { CreditsExhaustedModal } from "@/components/credits-exhausted-modal"
 import { MarkdownRenderer } from "@/components/markdown-renderer"
 import { BookmarkButton } from "@/components/bookmarks/BookmarkButton"
+import { ExportMenu } from "@/components/export/ExportMenu"
 
 interface ResourceLink {
   title: string
@@ -1112,16 +1113,13 @@ function AITutorContent() {
             <div className="flex items-center gap-2">
               {activeMode !== "chat" && <Badge variant="secondary">{modeLabels[activeMode]}</Badge>}
               {messages.length > 1 && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleExportChat}
-                  className="gap-2 border-border hover:bg-secondary text-foreground"
-                  title="Export chat to Markdown"
-                >
-                  <Download className="h-4 w-4" />
-                  <span className="hidden sm:inline">Export Chat</span>
-                </Button>
+                <ExportMenu
+                  type="ai-tutor"
+                  title={chatSessions.find((s) => s.id === activeSessionId)?.title || "AI Tutor Session"}
+                  subject="AI Study Tutor Conversation"
+                  content={{ messages }}
+                  label="Export Chat"
+                />
               )}
               {showSourcesSidebar && (
                 <Button
