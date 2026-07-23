@@ -60,6 +60,8 @@ import NextLink from "next/link"
 import { LoginGateModal } from "@/components/login-gate-modal"
 import { CreditsExhaustedModal } from "@/components/credits-exhausted-modal"
 import { MarkdownRenderer } from "@/components/markdown-renderer"
+import { BookmarkButton } from "@/components/bookmarks/BookmarkButton"
+import { ExportMenu } from "@/components/export/ExportMenu"
 
 interface ResourceLink {
   title: string
@@ -1111,16 +1113,13 @@ function AITutorContent() {
             <div className="flex items-center gap-2">
               {activeMode !== "chat" && <Badge variant="secondary">{modeLabels[activeMode]}</Badge>}
               {messages.length > 1 && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleExportChat}
-                  className="gap-2 border-border hover:bg-secondary text-foreground"
-                  title="Export chat to Markdown"
-                >
-                  <Download className="h-4 w-4" />
-                  <span className="hidden sm:inline">Export Chat</span>
-                </Button>
+                <ExportMenu
+                  type="ai-tutor"
+                  title={chatSessions.find((s) => s.id === activeSessionId)?.title || "AI Tutor Session"}
+                  subject="AI Study Tutor Conversation"
+                  content={{ messages }}
+                  label="Export Chat"
+                />
               )}
               {showSourcesSidebar && (
                 <Button
@@ -1143,9 +1142,14 @@ function AITutorContent() {
             >
               <div className="mx-auto max-w-4xl space-y-4 md:space-y-6">
                 <div ref={messagesTopRef} />
-                {messages.map((message) => {
+                {messages.map((message, messageIndex) => {
                   const feedback = messageFeedback[message.id]
                   const hasSources = message.role === "assistant" && (message.sources?.length || 0) > 0
+                  
+                  const precedingUserMessage = [...messages.slice(0, messageIndex)].reverse().find((m) => m.role === "user")
+                  const userQuestion = precedingUserMessage?.content || "AI Tutor Doubt"
+                  const currentSession = chatSessions.find((s) => s.id === activeSessionId)
+                  const subjectTopic = currentSession?.title || "AI Tutor"
 
                   return (
                     <div
@@ -1273,6 +1277,13 @@ function AITutorContent() {
                                     <Copy className="h-3.5 w-3.5" />
                                   )}
                                 </Button>
+
+                                <BookmarkButton
+                                  question={userQuestion}
+                                  answer={message.content}
+                                  subject={subjectTopic}
+                                  tags={["AI Tutor"]}
+                                />
 
                                 <Button
                                   variant="ghost"

@@ -1,3 +1,4 @@
+
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
@@ -97,19 +98,19 @@ export async function POST(req: NextRequest) {
 
     const aiResponse = attachments.length
       ? await analyzeAttachmentsWithGemini({
-          message:
-            cleanMessage ||
-            "Please review the uploaded file and help me understand it.",
-          attachments,
-          webContext,
-        })
+        message:
+          cleanMessage ||
+          "Please review the uploaded file and help me understand it.",
+        attachments,
+        webContext,
+      })
       : await generateAIResponse(
-          cleanMessage || "Please help me with the uploaded study material.",
-          {
-            mode,
-            webContext,
-          },
-        );
+        cleanMessage || "Please help me with the uploaded study material.",
+        {
+          mode,
+          webContext,
+        },
+      );
 
     const finalReply = formatReplyWithSources(aiResponse, sources);
 

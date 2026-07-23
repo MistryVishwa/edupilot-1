@@ -37,6 +37,7 @@ import { cn } from "@/lib/utils"
 import { LoginGateModal } from "@/components/login-gate-modal"
 import { hasPaidAccess } from "@/lib/plans"
 import { useUser } from "@/hooks/use-user"
+import { ExportMenu } from "@/components/export/ExportMenu"
 
 type ReviewRating = "again" | "hard" | "good" | "easy"
 
@@ -789,6 +790,20 @@ export default function FlashcardsPage() {
                   <RotateCcw className="h-4 w-4" />
                   Reset
                 </Button>
+                {cards.length > 1 && cards[0].id !== "demo" && (
+                  <>
+                    <Button variant="outline" size="sm" className="gap-1.5" onClick={handleExportCSV}>
+                      <Download className="h-4 w-4" />
+                      Export CSV
+                    </Button>
+                    <ExportMenu
+                      type="flashcards"
+                      title={aiTopic ? `${aiTopic} Flashcards` : "Flashcards Set"}
+                      subject="Flashcard Study Set"
+                      content={{ cards }}
+                      label="Export Document"
+                    />
+                  </>
                 {canExport && (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>

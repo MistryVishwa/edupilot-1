@@ -17,6 +17,7 @@ const PROTECTED_ROUTES = [
   "/topic-analyzer",
   "/goals",
   "/revision",
+  "/bookmarks",
   "/document-chat",
   "/essay-grader",
 ]
